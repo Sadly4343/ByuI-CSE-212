@@ -1,4 +1,6 @@
-﻿public class PriorityQueue
+﻿using System.Runtime.CompilerServices;
+
+public class PriorityQueue
 {
     private List<PriorityItem> _queue = new();
 
@@ -23,17 +25,28 @@
         }
 
         // Find the index of the item with the highest priority to remove
-        var highPriorityIndex = 0;
+        int highPriorityIndex = 0;
+        int maxIndex = -1;
         List<int> priorityNums = new List<int>();
-        for (int index = 0; index < _queue.Count - 1; index++)
+        for (int index = 0; index < _queue.Count; index++)
         {
-            if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)
-                priorityNums.Add(highPriorityIndex);
+            if (_queue[index].Priority > highPriorityIndex)
+            {
+                highPriorityIndex = _queue[index].Priority;
+                maxIndex = index;
+            }
+        }
+
+        if (maxIndex != -1)
+        {
+            var highValue = _queue[maxIndex];
+            _queue.RemoveAt(maxIndex);
+
+            _queue.Insert(0, highValue);
         }
 
         // Remove and return the item with the highest priority
-        int priorityNumss = priorityNums[0];
-        var value = _queue[priorityNumss].Value;
+        var value = _queue[0].Value;
         return value;
     }
 

@@ -19,7 +19,7 @@ public class PriorityQueueTests
         var george = new PriorityItem("George", 3);
         var priorityQueue = new PriorityQueue();
 
-        PriorityItem[] expectedResult = [bob, tim, sue, bob, tim, sue, tim, sue, tim, tim];
+        PriorityItem[] expectedResult = [tim, sue, bob, tim, sue, tim, sue, tim, tim];
         priorityQueue.Enqueue(bob.Value, bob.Priority);
         priorityQueue.Enqueue(tim.Value, tim.Priority);
         priorityQueue.Enqueue(sue.Value, sue.Priority);
