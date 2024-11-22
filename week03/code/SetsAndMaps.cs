@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using Microsoft.VisualStudio.TestPlatform.Common.Filtering;
 
 public static class SetsAndMaps
 {
@@ -68,8 +69,19 @@ public static class SetsAndMaps
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename))
         {
+
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            string degree = fields[3];
+            if (!degrees.ContainsKey(degree))
+            {
+                degrees[degree] = 1;
+            }
+            else
+            {
+                degrees[degree] += 1;
+
+            }
+
         }
 
         return degrees;
@@ -93,8 +105,47 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        Dictionary<char, int> letters = new Dictionary<char, int>();
+        string word1Filter = word1.Replace(" ", "");
+        string word2Filter = word2.Replace(" ", "");
+        string word1Lower = word1Filter.ToUpper();
+        string word2Lower = word2Filter.ToUpper();
+        if (word1Lower.Length != word2Lower.Length)
+        {
+            return false;
+        }
+        foreach (char c in word1Lower)
+        {
+            if (!letters.ContainsKey(c))
+            {
+                letters[c] = 1;
+            }
+            else
+            {
+                letters[c] += 1;
+            }
+
+        }
+        foreach (char c in word2Lower)
+        {
+            if (!letters.ContainsKey(c))
+            {
+                letters[c] = 1;
+            }
+            else
+            {
+                letters[c] += 1;
+            }
+
+        }
+        foreach (int value in letters.Values)
+        {
+            if (value % 2 != 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /// <summary>
