@@ -1,3 +1,7 @@
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
 public static class SetsAndMaps
@@ -21,8 +25,31 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        HashSet<string> hashSet1 = new HashSet<string>();
+        HashSet<string> hashSet2 = new HashSet<string>();
+        foreach (string word in words)
+        {
+            hashSet2.Add(word);
+            List<char> chars = new List<char>(word);
+            char first = chars[1];
+            char second = chars[0];
+            if (first != second)
+            {
+                string characters = first.ToString() + second.ToString();
+                hashSet1.Add(characters);
+            }
+
+        }
+        var set3 = hashSet1.Intersect(hashSet2);
+        List<string> listSet3 = set3.ToList();
+        List<string> results = new List<string>();
+        for (int i = 0; i < listSet3.Count - 1; i += 2)
+        {
+            string matches = listSet3[i] + '&' + listSet3[i + 1];
+            results.Add(matches);
+        }
+        return results.ToArray();
+
     }
 
     /// <summary>
