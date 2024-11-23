@@ -50,6 +50,7 @@ public static class SetsAndMaps
             int value = listSet3.Count / 2;
 
             string matches = listSet3[i] + '&' + listSet3[i + 1];
+
             results.Add(matches);
         }
         return results.ToArray();
