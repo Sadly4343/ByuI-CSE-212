@@ -1,3 +1,5 @@
+using System.Data;
+
 /// <summary>
 /// Defines a maze using a dictionary. The dictionary is provided by the
 /// user when the Maze object is created. The dictionary will contain the
@@ -32,7 +34,23 @@ public class Maze
     /// </summary>
     public void MoveLeft()
     {
+        List<string> values = new List<string>();
         // FILL IN CODE
+        foreach (bool value in _mazeMap[(_currX, _currY)])
+        {
+            string boolValue = value.ToString();
+
+            values.Add(boolValue);
+        }
+        string leftValue = values[0];
+        if (leftValue == "True")
+        {
+            _currX = _currX - 1;
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -41,7 +59,25 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        // FILL IN CODE
+        {
+            List<string> values = new List<string>();
+            // FILL IN CODE
+            foreach (bool value in _mazeMap[(_currX, _currY)])
+            {
+                string boolValue = value.ToString();
+
+                values.Add(boolValue);
+            }
+            string rightValue = values[1];
+            if (rightValue == "True")
+            {
+                _currX = _currX + 1;
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
     }
 
     /// <summary>
@@ -50,7 +86,25 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        // FILL IN CODE
+        {
+            List<string> values = new List<string>();
+            // FILL IN CODE
+            foreach (bool value in _mazeMap[(_currX, _currY)])
+            {
+                string boolValue = value.ToString();
+
+                values.Add(boolValue);
+            }
+            string upValue = values[2];
+            if (upValue == "True")
+            {
+                _currY = _currY - 1;
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
     }
 
     /// <summary>
@@ -59,7 +113,25 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        // FILL IN CODE
+        {
+            List<string> values = new List<string>();
+            // FILL IN CODE
+            foreach (bool value in _mazeMap[(_currX, _currY)])
+            {
+                string boolValue = value.ToString();
+
+                values.Add(boolValue);
+            }
+            string downValue = values[3];
+            if (downValue == "True")
+            {
+                _currY = _currY + 1;
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
     }
 
     public string GetStatus()

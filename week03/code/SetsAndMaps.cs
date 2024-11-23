@@ -41,11 +41,14 @@ public static class SetsAndMaps
             }
 
         }
-        var set3 = hashSet1.Intersect(hashSet2);
+        var set3 = hashSet1.Intersect(hashSet2).ToHashSet();
         List<string> listSet3 = set3.ToList();
         List<string> results = new List<string>();
         for (int i = 0; i < listSet3.Count - 1; i += 2)
         {
+
+            int value = listSet3.Count / 2;
+
             string matches = listSet3[i] + '&' + listSet3[i + 1];
             results.Add(matches);
         }
@@ -173,7 +176,8 @@ public static class SetsAndMaps
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
-
+        var name = featureCollection.properties.mag;
+        Console.WriteLine($" Space Station {name}");
         // TODO Problem 5:
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
