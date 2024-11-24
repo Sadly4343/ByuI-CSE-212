@@ -4,13 +4,16 @@ using System.Runtime.ExceptionServices;
 
 public class FeatureCollection
 {
-    public string type { get; set; }
-    public Properties properties { get; set; }
-    public List<Properties> propertiess { get; set; }
-
-
+    public Feature[] Features { get; set; }
 }
+public class Feature
+{
+    public Properties properties { get; set; }
+}
+
 public class Properties
 {
-    public double mag { get; set; }
+    public string Place { get; set; }
+
+    public double Mag { get; set; }
 }

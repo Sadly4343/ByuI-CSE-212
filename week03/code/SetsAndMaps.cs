@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using System.Xml;
 using Microsoft.VisualStudio.TestPlatform.Common.Filtering;
 
 public static class SetsAndMaps
@@ -176,14 +177,18 @@ public static class SetsAndMaps
         var json = reader.ReadToEnd();
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
-        var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
-        var name = featureCollection.properties.mag;
-        Console.WriteLine($" Space Station {name}");
+        var space = JsonSerializer.Deserialize<FeatureCollection>(json, options);
+        List<string> earthquakes = new List<string>();
+        foreach (var feature in space.Features)
+        {
+            string value = feature.properties.Place + " " + "- Mag" + " " + feature.properties.Mag;
+            earthquakes.Add(value);
+        }
         // TODO Problem 5:
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
         // 3. Return an array of these string descriptions.
-        return [];
+        return earthquakes.ToArray();
     }
 }
