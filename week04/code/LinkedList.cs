@@ -144,19 +144,20 @@ public class LinkedList : IEnumerable<int>
         {
 
 
-            if (current.Data == value)
+            if (current.Data == value && current.Next != null)
             {
 
                 current.Next.Prev = current.Prev;
                 current.Prev.Next = current.Next;
                 break;
             }
-
-            else
+            else if (current.Data == value && current.Next == null)
             {
-                previous = current;
-                current = current.Next;
+                current.Prev.Next = null;
+                current = current.Prev;
             }
+
+            current = current.Next;
 
         }
 
@@ -180,19 +181,16 @@ public class LinkedList : IEnumerable<int>
         {
 
 
-            if (current.Data == value)
+            if (current.Data == oldValue)
             {
+                current.Data = newValue;
 
-                current.Next.Prev = current.Prev;
-                current.Prev.Next = current.Next;
-                break;
-            }
 
-            else
-            {
-                previous = current;
-                current = current.Next;
             }
+            current = current.Next;
+
+
+
 
         }
     }
