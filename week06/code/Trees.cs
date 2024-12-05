@@ -1,3 +1,5 @@
+using System.ComponentModel.Design.Serialization;
+
 public static class Trees
 {
     /// <summary>
@@ -48,6 +50,20 @@ public static class Trees
     /// <param name="bst">the BinarySearchTree in which to insert the values</param>
     private static void InsertMiddle(int[] sortedNumbers, int first, int last, BinarySearchTree bst)
     {
-        // TODO Start Problem 5
+        int data = sortedNumbers.Length / 2;
+        int value = sortedNumbers[data];
+
+        Node newNode = new(data);
+
+        if (value < data)
+        {
+            if (Left is null)
+            {
+                Left = new Node(value);
+            }
+        }
+
+
     }
+
 }
