@@ -1,3 +1,5 @@
+using System.Windows.Markup;
+
 public class Node
 {
     public int Data { get; set; }
@@ -13,7 +15,9 @@ public class Node
     {
         // TODO Start Problem 1
 
-        if (value < Data)
+
+
+        if (value < Data && value != Data)
         {
             // Insert to the left
             if (Left is null)
@@ -26,15 +30,37 @@ public class Node
             // Insert to the right
             if (Right is null)
                 Right = new Node(value);
-            else
+            else if (Right.Data != value)
                 Right.Insert(value);
         }
     }
 
     public bool Contains(int value)
     {
-        // TODO Start Problem 2
-        return false;
+        if (Data == value)
+        {
+            return true;
+        }
+        else
+        {
+
+            if (Left is not null && Left.Data == value)
+            {
+                return true;
+            }
+            else if (Right is not null && Right.Data == value)
+            {
+                return true;
+            }
+            else if (Right is not null)
+            {
+                return Right.Contains(value);
+            }
+            return false;
+
+
+        }
+
     }
 
     public int GetHeight()
