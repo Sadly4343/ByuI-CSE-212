@@ -57,10 +57,7 @@ public static class Trees
 
         if (value < data)
         {
-            if (Left is null)
-            {
-                Left = new Node(value);
-            }
+
         }
 
 

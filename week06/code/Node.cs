@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using System.Windows.Markup;
 
 public class Node
@@ -65,7 +66,10 @@ public class Node
 
     public int GetHeight()
     {
-
-        return 0; // Replace this line with the correct return statement(s)
+        if (Left is null && Right is null)
+        {
+            return 0;
+        }
+        return 0;
     }
 }
